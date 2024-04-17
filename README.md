@@ -1,2 +1,3 @@
 # MyJournal
-An application where you can write your dayle overview, your desires, secrets and ideas.
+
+MyJournal ist eine einfache Tagebuchanwendung, die es Benutzern ermöglicht, ihre Gedanken und Erlebnisse festzuhalten.

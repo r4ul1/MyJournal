@@ -1,0 +1,61 @@
+{% extends 'base.html'%}
+    {% block head %}
+    <title>Diary App</title>
+    {% endblock %}
+{%block body%}
+    <h1>Diary</h1>
+    <form method="POST" action="/">
+        <label for="title" class="sr-only texts">Title:</label>
+        <input type="text" name="title" class="input" placeholder="Title" required>
+        
+        <label for="content" class="sr-only">Content:</label>
+        <textarea id="message" name="content" placeholder="Content" required></textarea>
+        
+        <button type="submit" class="animated-button">
+            <svg viewBox="0 0 24 24" class="arr-2" xmlns="http://www.w3.org/2000/svg">
+                <path d="M16.1716 10.9999L10.8076 5.63589L12.2218 4.22168L20 11.9999L12.2218 19.778L10.8076 18.3638L16.1716 12.9999H4V10.9999H16.1716Z"></path>
+              </svg>
+              <span class="text">Add Note</span>
+              <span class="circle"></span>
+              <svg viewBox="0 0 24 24" class="arr-1" xmlns="http://www.w3.org/2000/svg">
+                <path d="M16.1716 10.9999L10.8076 5.63589L12.2218 4.22168L20 11.9999L12.2218 19.778L10.8076 18.3638L16.1716 12.9999H4V10.9999H16.1716Z"></path>
+              </svg></button>
+    </form>
+    <section>
+    <h2 class="texts">Diary Entries</h2>
+    <div class="tbl-header">
+    <table cellpadding="0" cellspacing="0" border="0"> 
+        <thead>
+            <tr>
+                <th>Date/Time</th>
+                <th>Title</th>
+                <th>Actions</th>
+            </tr>
+        </thead class="fl-table">
+        </table>
+    </div>
+    <div class="tbl-content">
+    <table cellpadding="0" cellspacing="0" border="0">
+        <tbody>
+            {% for note in notes %}
+            <tr>
+                <td>{{ note.date_created.strftime('%Y-%m-%d %H:%M:%S') }}</td>
+                <td><a href="{{ url_for('view', id=note.id) }}">{{ note.title }}</a></td>
+                <td class="links">
+                    <a href="{{ url_for('view', id=note.id) }}">View</a>
+                    <a href="{{ url_for('update', id=note.id) }}">Update</a>
+                    <a href="{{ url_for('delete', id=note.id) }}">Delete</a>
+                </td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+    </div>
+    </section>
+    <script>
+        $(window).on("load resize ", function() {
+            var scrollWidth = $('.tbl-content').width() - $('.tbl-content table').width();
+            $('.tbl-header').css({'padding-right':scrollWidth});
+          }).resize();
+    </script>
+{%endblock%}

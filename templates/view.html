@@ -1,0 +1,15 @@
+{% extends 'base.html'%}
+    {% block head %}
+    <title>View Note</title>
+    {% endblock %}
+{%block body%}
+    <h1>View Note</h1>
+    <p class="texts">Date/Time: {{ note.date_created.strftime('%Y-%m-%d %H:%M:%S') }}</p>
+    <p class="texts" id="viewtitle">
+        <!-- Title:  -->
+        {{ note.title }}
+
+    </p>
+    <p class="texts" id="viewtext">{{ note.content }}</p>
+    <a href="/">Back</a>
+{%endblock%}
